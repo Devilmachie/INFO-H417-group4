@@ -28,7 +28,7 @@ class CharacterReaderTest {
     @org.junit.jupiter.api.Test
     void eos_reached() {
         for(int i=0; i<10; i++) cread.readln();
-        assertEquals(true, cread.eos_reached());
+        assertTrue(cread.eos_reached());
     }
 
     @org.junit.jupiter.api.Test
@@ -36,14 +36,17 @@ class CharacterReaderTest {
         cread.setPointerPosition(1);
         String lineread = cread.readln();
         assertEquals("igne 1", lineread);
+        cread.setPointerPosition(72);
+        String lineread9 = cread.readln();
+        assertEquals("Ligne 9", lineread9);
     }
 
 
     @Test
     void close() {
-        assertEquals(true ,cread.isStreamOpen());
+        assertTrue(cread.isStreamOpen());
         cread.close();
-        assertEquals(false ,cread.isStreamOpen());
+        assertFalse(cread.isStreamOpen());
     }
 
     @AfterEach

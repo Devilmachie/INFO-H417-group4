@@ -36,11 +36,11 @@ class BufferReaderTest {
 
     @Test
     void eos_reached() {
-        assertEquals(false, bread.eos_reached());
-        bread.setPointerPosition(64);
+        assertFalse(bread.eos_reached());
+        bread.setPointerPosition(72);
         String l9 = bread.readln();
         assertEquals("Ligne 9", l9);
-        assertEquals(true, bread.eos_reached());
+        assertTrue(bread.eos_reached());
 
     }
 
@@ -48,12 +48,14 @@ class BufferReaderTest {
     void setPointerPosition() {
         bread.setPointerPosition(1);
         assertEquals("igne 1", bread.readln());
+        bread.setPointerPosition(73);
+        assertEquals("igne 9", bread.readln());
     }
 
     @Test
     void close() {
-        assertEquals(true, bread.isStreamOpen());
+        assertTrue(bread.isStreamOpen());
         bread.close();
-        assertEquals(false, bread.isStreamOpen());
+        assertFalse(bread.isStreamOpen());
     }
 }

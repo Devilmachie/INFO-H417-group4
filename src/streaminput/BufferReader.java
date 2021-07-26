@@ -6,16 +6,14 @@ import java.io.FileReader;
 import java.io.IOException;
 
 
-public class BufferReader implements StreamReader
-{
+public class BufferReader implements StreamReader {
     private FileReader reader;
     private File fp;
 
 
-
     private int buf_size = 1024;
-    private char[] buffer;
-    private int last_c = 0;
+    private int[] buffer;
+    private int bufferpos = 0;
     private boolean eos;
     private long nchar_read = 0;
 
@@ -27,6 +25,7 @@ public class BufferReader implements StreamReader
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        fillBuffer();
     }
 
     public BufferReader(File fp, int buffer_size) {
@@ -38,42 +37,55 @@ public class BufferReader implements StreamReader
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        fillBuffer();
 
     }
 
     public void setBufferSize(int buffer_size) {
-        if(buffer_size < 1) throw new IllegalArgumentException("the buffer size must be greater than zero.");
+        if (buffer_size < 1) throw new IllegalArgumentException("the buffer size must be greater than zero.");
         this.buf_size = buffer_size;
-        buffer = new char[buffer_size];
+        buffer = new int[buffer_size];
+    }
+
+    private void fillBuffer()
+    {
+        int next_c;
+        bufferpos = 0;
+        try
+        {
+            for (int i=0; i<buf_size; i++)
+            {
+                next_c = reader.read();
+                buffer[i] = next_c;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public String readln() {
         StringBuilder line = new StringBuilder();
-        boolean refill = true;
-        int length = 0;
-        char last_c = 0;
-        try
+        boolean line_read = false;
+        while (! line_read)
         {
-            int i = 0;
-            while (refill) {
-                length = reader.read(buffer);
-                if(length == -1) eos = true;
-                for (i = 0; i<length && (last_c = buffer[i]) != '\n'; i++)
-                {
-                    line.append(last_c);
-                    nchar_read++;
-                }
-                if(last_c == '\n' || length == -1) refill = false;
-
+            if(bufferpos == buf_size)
+                fillBuffer();
+            if(buffer[bufferpos] != 13 && buffer[bufferpos] != -1)
+                line.append((char) buffer[bufferpos++]);
+            else if(buffer[bufferpos] == 13)
+            {
+                bufferpos += 2; // WE READ CR AND LF SYMBOL
+                line_read=true;
             }
-            nchar_read++;
+            else if(buffer[bufferpos] == -1)
+            {
+                line_read = true;
+                eos = true;
+            }
         }
-        catch (IOException readp)
-        {
-            readp.printStackTrace();
-        }
-        setPointerPosition(nchar_read);
         return line.toString();
     }
 
@@ -88,7 +100,8 @@ public class BufferReader implements StreamReader
             reader.close();
             reader = new FileReader(fp);
             reader.skip(pos);
-            nchar_read = pos;
+            bufferpos = 0;
+            fillBuffer();
         } catch (IOException e) {
             e.printStackTrace();
         }

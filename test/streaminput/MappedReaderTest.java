@@ -33,17 +33,25 @@ class MappedReaderTest {
 
     @Test
     void eos_reached() {
-        mread.setPointerPosition(64);
+        mread.setPointerPosition(72);
         String l9 = mread.readln();
         assertEquals("Ligne 9", l9);
-        assertEquals(true, mread.eos_reached());
+        assertTrue(mread.eos_reached());
     }
 
     @Test
-    void setPointerPosition() {
+    void setPointerPosition() 
+    {
+        mread.setPointerPosition(1);
+        assertEquals("igne 1", mread.readln());
+        mread.setPointerPosition(73);
+        assertEquals("igne 9", mread.readln());
     }
 
     @Test
     void close() {
+        assertTrue(mread.isStreamOpen());
+        mread.close();
+        assertFalse(mread.isStreamOpen());
     }
 }

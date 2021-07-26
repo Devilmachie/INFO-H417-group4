@@ -25,7 +25,7 @@ public class CharacterReader implements StreamReader {
         StringBuilder line = new StringBuilder();
         try {
             int nextc;
-            while( (nextc=fileReader.read()) != -1 && nextc != '\n')
+            while( (nextc=fileReader.read()) != -1 && nextc != 13)
             {
                 line.append((char) nextc);
             }
