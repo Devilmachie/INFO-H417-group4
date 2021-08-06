@@ -20,9 +20,11 @@ class CharacterReaderTest {
 
     @org.junit.jupiter.api.Test
     void readln() {
-        String lineread = cread.readln();
+        String lineread1 = cread.readln();
+        String lineread2= cread.readln();
         cread.close();
-        assertEquals("Ligne 1", lineread);
+        assertEquals("Ligne 1", lineread1);
+        assertEquals("Ligne 2", lineread2);
     }
 
     @org.junit.jupiter.api.Test

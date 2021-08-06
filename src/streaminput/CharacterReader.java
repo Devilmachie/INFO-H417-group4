@@ -29,6 +29,7 @@ public class CharacterReader implements StreamReader {
             {
                 line.append((char) nextc);
             }
+            fileReader.skip(1); // in windows the EOL is /r/n (two character long)
             if(nextc == -1) eos = true;
         } catch (IOException readerr) {
             readerr.printStackTrace();
