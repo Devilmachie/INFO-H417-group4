@@ -9,10 +9,12 @@ public class BufferWriter implements StreamWriter{
     private int buffersize;
     private File fp;
     private FileWriter writer;
+    private char[] buffer;
 
     public BufferWriter(String fileName, int bufferSize) {
         this.fp = new File(fileName);
         this.buffersize = bufferSize;
+        this.buffer = new char[bufferSize];
         checkFileExistence(this.fp);
         initiliazeFileWriter(this.fp);
     }
@@ -20,6 +22,7 @@ public class BufferWriter implements StreamWriter{
     public BufferWriter(File bufferFile, int bufferSize) {
         this.fp = bufferFile;
         this.buffersize = bufferSize;
+        this.buffer = new char[bufferSize];
         checkFileExistence(this.fp);
         initiliazeFileWriter(this.fp);
     }
@@ -56,12 +59,37 @@ public class BufferWriter implements StreamWriter{
         return isCreatedForWriting;
     }
 
-    @Override
-    public void writeLine(String linetowrite) {
-
+    private void loadBuffer(String text, int offset)
+    {
+        for(int i = offset, j=0; i<offset+buffersize &&  i < text.length();i++,j++)
+        {
+            buffer[j] = text.charAt(i);
+        }
     }
+    @Override
+    public void writeLine(String lineToWrite) throws IOException {
+        checkFileExistence(fp);
+        lineToWrite += "\r\n";
+        boolean lineWritten = false;
+        int characterWritten = 0;
+        while(!lineWritten)
+        {
+            loadBuffer(lineToWrite, characterWritten);
+            characterWritten += buffersize;
+            writer.write(buffer);
+            writer.flush();
+
+            if(characterWritten >= lineToWrite.length()) lineWritten = true;
+        }
+
+     }
 
     @Override
     public void close() {
+        try {
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

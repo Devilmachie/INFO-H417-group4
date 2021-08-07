@@ -34,6 +34,7 @@ class BufferWriterTest {
         String line2 = "Ligne 2";
         assertDoesNotThrow(()-> bwriter.writeLine(line1));
         assertDoesNotThrow(()-> bwriter.writeLine(line2));
+        breader.setPointerPosition(0);
         String readLine1 = breader.readln();
         String readLine2 = breader.readln();
         assertEquals("Ligne 1", readLine1);
