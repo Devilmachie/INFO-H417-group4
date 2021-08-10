@@ -1,0 +1,13 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99,9%)","Unit","Param: fileName"
+"benchmark.LengthBenchmark.singleCharacterReader","avgt",1,5,"269,502949","2,726122","ms/op",C:\Users\lenge\IdeaProjects\INFO-H417-group4\imdb\company_name.csv
+"benchmark.LengthBenchmark.singleCharacterReader","avgt",1,5,"0,042850","0,017028","ms/op",C:\Users\lenge\IdeaProjects\INFO-H417-group4\imdb\company_type.csv
+"benchmark.LengthBenchmark.singleCharacterReader","avgt",1,5,"35,155531","0,908809","ms/op",C:\Users\lenge\IdeaProjects\INFO-H417-group4\imdb\complete_cast.csv
+"benchmark.LengthBenchmark.singleCharacterReader","avgt",1,5,"0,044529","0,009562","ms/op",C:\Users\lenge\IdeaProjects\INFO-H417-group4\imdb\comp_cast_type.csv
+"benchmark.LengthBenchmark.singleCharacterReader","avgt",1,5,"0,063665","0,002226","ms/op",C:\Users\lenge\IdeaProjects\INFO-H417-group4\imdb\info_type.csv
+"benchmark.LengthBenchmark.singleCharacterReader","avgt",1,5,"57,080414","0,948987","ms/op",C:\Users\lenge\IdeaProjects\INFO-H417-group4\imdb\keyword.csv
+"benchmark.LengthBenchmark.singleCharacterReader","avgt",1,5,"0,048218","0,006348","ms/op",C:\Users\lenge\IdeaProjects\INFO-H417-group4\imdb\kind_type.csv
+"benchmark.LengthBenchmark.singleCharacterReader","avgt",1,5,"0,046677","0,004418","ms/op",C:\Users\lenge\IdeaProjects\INFO-H417-group4\imdb\link_type.csv
+"benchmark.LengthBenchmark.singleCharacterReader","avgt",1,5,"511,200897","8,065819","ms/op",C:\Users\lenge\IdeaProjects\INFO-H417-group4\imdb\movie_info_idx.csv
+"benchmark.LengthBenchmark.singleCharacterReader","avgt",1,5,"9,391801","0,103431","ms/op",C:\Users\lenge\IdeaProjects\INFO-H417-group4\imdb\movie_link.csv
+"benchmark.LengthBenchmark.singleCharacterReader","avgt",1,5,"0,041707","0,008794","ms/op",C:\Users\lenge\IdeaProjects\INFO-H417-group4\imdb\role_type.csv
+"benchmark.LengthBenchmark.singleCharacterReader","avgt",1,5,"0,091956","0,000786","ms/op",C:\Users\lenge\IdeaProjects\INFO-H417-group4\imdb\schematext.sql

@@ -1,0 +1,17 @@
+# JMH version: 1.28
+# VM version: JDK 1.8.0_282, OpenJDK 64-Bit Server VM, 25.282-b08
+# VM invoker: C:\Program Files\AdoptOpenJDK\jdk-8.0.282.8-hotspot\jre\bin\java.exe
+# VM options: -javaagent:C:\Users\lenge\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\203.7148.57\lib\idea_rt.jar=63388:C:\Users\lenge\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\203.7148.57\bin -Dfile.encoding=UTF-8
+# Blackhole mode: full + dont-inline hint
+# Warmup: 3 iterations, 10 s each
+# Measurement: 20 iterations, 10 s each
+# Timeout: 600 s per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmark.LengthBenchmark.bufferedReader
+# Parameters: (bufferSize = 2, fileName = C:\Users\lenge\IdeaProjects\INFO-H417-group4\imdb\aka_name.csv)
+
+# Run progress: 0,00% complete, ETA 1 days, 23:47:20
+# Fork: 1 of 1
+# Warmup Iteration   1: 1628,085 ms/op
+# Warmup Iteration   2: 

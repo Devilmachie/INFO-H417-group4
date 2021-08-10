@@ -1,0 +1,4 @@
+package benchmark.jmh_generated;
+public class LengthBenchmark_NoSizeParameters_jmhType extends LengthBenchmark_NoSizeParameters_jmhType_B3 {
+}
+
