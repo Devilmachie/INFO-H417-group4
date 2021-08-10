@@ -94,6 +94,7 @@ public class BufferReader implements StreamReader {
         return eos;
     }
 
+
     @Override
     public void setPointerPosition(long pos) {
         try {

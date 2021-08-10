@@ -1,5 +1,7 @@
 package streaminput;
 
+import org.openjdk.jmh.annotations.Benchmark;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -19,6 +21,7 @@ public class CharacterReader implements StreamReader {
             fnf.printStackTrace();
         }
     }
+
 
     @Override
     public String readln() {

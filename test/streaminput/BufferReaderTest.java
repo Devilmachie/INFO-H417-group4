@@ -61,12 +61,5 @@ class BufferReaderTest {
         assertFalse(bread.isStreamOpen());
     }
 
-    @Test
-    void testOnDifferentFile() throws IOException {
-        BufferReader breader = new BufferReader(new File("testfile/test_write_buffer_writer"));
-        String l1 = breader.readln();
-        String l2 = breader.readln();
-        assertEquals("Ligne 1", l1);
-        assertEquals("Ligne 2", l2);
-    }
+
 }

@@ -64,7 +64,7 @@ public class MappedReader implements StreamReader {
         int char_read;
         while(!line_read)
         {
-            if(mappos == map_size)
+            if(mappos >= map_size)
             {
                 nc_read += map_size;
                 fillMap();
@@ -83,6 +83,7 @@ public class MappedReader implements StreamReader {
             {
                 line_read = true;
                 mappos += 2;
+                //nc_read ++; // because we virtually need to "read" the LF SYMBOL
             }
         }
 

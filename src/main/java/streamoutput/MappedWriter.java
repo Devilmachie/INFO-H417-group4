@@ -71,12 +71,24 @@ public class MappedWriter implements StreamWriter
     public void writeLine(String linetowrite) throws IOException {
         int offsetBuffer = 0;
         boolean lineWritten = false;
-        linetowrite += "\r\n";
-
-
+        linetowrite += "\r";
+        char[] textArray = linetowrite.toCharArray();
+        long filePointer = writer.getFilePointer();
+        int textLength = linetowrite.length();
+        int mappingNeeded = map_size;
+        int i = 0;
         while(!lineWritten)
         {
+            if(textLength - offsetBuffer < map_size)
+            {
+                mappingNeeded = textLength - offsetBuffer;
+                lineWritten = true;
+            }
+            map = channel.map(FileChannel.MapMode.READ_WRITE,filePointer+offsetBuffer, 2*mappingNeeded);
+            for(i=0; i < mappingNeeded; i++)    map.put((byte) textArray[i+offsetBuffer]);
+            offsetBuffer += mappingNeeded;
         }
+        writer.seek(filePointer+offsetBuffer);
     }
 
     @Override

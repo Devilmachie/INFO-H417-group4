@@ -32,13 +32,17 @@ class MappedWriterTest {
     void writeLine() {
         String line1 = "Ligne 1";
         String line2 = "Ligne 2";
+        String line3 = "Ligne 3";
         assertDoesNotThrow(()-> mwriter.writeLine(line1));
         assertDoesNotThrow(()-> mwriter.writeLine(line2));
+        assertDoesNotThrow(()-> mwriter.writeLine(line3));
         mreader.setPointerPosition(0);
         String readLine1 = mreader.readln();
         String readLine2 = mreader.readln();
+        String readLine3 = mreader.readln();
         assertEquals("Ligne 1", readLine1);
         assertEquals("Ligne 2", readLine2);
+        assertEquals("Ligne 3", readLine3);
     }
 
 
