@@ -1,5 +1,6 @@
 package streamoutput;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,7 +9,8 @@ public class BufferWriter implements StreamWriter{
 
     private int buffersize;
     private File fp;
-    private FileWriter writer;
+    private FileWriter wrappedWriter;
+    private BufferedWriter writer;
     private char[] buffer;
 
     public BufferWriter(String fileName, int bufferSize) {
@@ -29,7 +31,8 @@ public class BufferWriter implements StreamWriter{
 
     private void initiliazeFileWriter(File file_to_write) {
         try {
-            writer = new FileWriter(file_to_write);
+            wrappedWriter = new FileWriter(file_to_write);
+            writer = new BufferedWriter(wrappedWriter, buffersize);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -59,12 +62,15 @@ public class BufferWriter implements StreamWriter{
         return isCreatedForWriting;
     }
 
-    private void loadBuffer(String text, int offset)
+    private int loadBuffer(String text, int offset)
     {
+        int characterWritten = 0;
         for(int i = offset, j=0; i<offset+buffersize &&  i < text.length();i++,j++)
         {
             buffer[j] = text.charAt(i);
+            characterWritten++;
         }
+        return characterWritten;
     }
     @Override
     public void writeLine(String lineToWrite) throws IOException {
@@ -72,11 +78,12 @@ public class BufferWriter implements StreamWriter{
         lineToWrite += "\r\n";
         boolean lineWritten = false;
         int characterWritten = 0;
+        int nc_to_write;
         while(!lineWritten)
         {
-            loadBuffer(lineToWrite, characterWritten);
+            nc_to_write = loadBuffer(lineToWrite, characterWritten);
             characterWritten += buffersize;
-            writer.write(buffer);
+            writer.write(buffer, 0, nc_to_write);
             writer.flush();
 
             if(characterWritten >= lineToWrite.length()) lineWritten = true;

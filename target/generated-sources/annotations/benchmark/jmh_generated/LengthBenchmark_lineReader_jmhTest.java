@@ -70,24 +70,24 @@ public final class LengthBenchmark_lineReader_jmhTest {
         if (threadParams.getSubgroupIndex() == 0) {
             RawResults res = new RawResults();
             LengthBenchmark_jmhType l_lengthbenchmark0_0 = _jmh_tryInit_f_lengthbenchmark0_0(control);
-            LengthBenchmark_NoSizeParameters_jmhType l_nosizeparameters1_1 = _jmh_tryInit_f_nosizeparameters1_1(control);
+            LengthBenchmark_NoSizeParameters_jmhType l_nosizeparameters1_G = _jmh_tryInit_f_nosizeparameters1_G(control);
 
             control.preSetup();
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_1);
+                l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_G);
                 res.allOps++;
             }
 
             notifyControl.startMeasurement = true;
-            lineReader_thrpt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_nosizeparameters1_1, l_lengthbenchmark0_0);
+            lineReader_thrpt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_nosizeparameters1_G, l_lengthbenchmark0_0);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_1);
+                    l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_G);
                     res.allOps++;
                 }
                 control.preTearDown();
@@ -96,7 +96,9 @@ public final class LengthBenchmark_lineReader_jmhTest {
             }
 
             if (control.isLastIteration()) {
-                f_nosizeparameters1_1 = null;
+                synchronized(this.getClass()) {
+                    f_nosizeparameters1_G = null;
+                }
                 f_lengthbenchmark0_0 = null;
             }
             res.allOps += res.measuredOps;
@@ -114,12 +116,12 @@ public final class LengthBenchmark_lineReader_jmhTest {
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void lineReader_thrpt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, LengthBenchmark_NoSizeParameters_jmhType l_nosizeparameters1_1, LengthBenchmark_jmhType l_lengthbenchmark0_0) throws Throwable {
+    public static void lineReader_thrpt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, LengthBenchmark_NoSizeParameters_jmhType l_nosizeparameters1_G, LengthBenchmark_jmhType l_lengthbenchmark0_0) throws Throwable {
         long operations = 0;
         long realTime = 0;
         result.startTime = System.nanoTime();
         do {
-            l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_1);
+            l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_G);
             operations++;
         } while(!control.isDone);
         result.stopTime = System.nanoTime();
@@ -139,24 +141,24 @@ public final class LengthBenchmark_lineReader_jmhTest {
         if (threadParams.getSubgroupIndex() == 0) {
             RawResults res = new RawResults();
             LengthBenchmark_jmhType l_lengthbenchmark0_0 = _jmh_tryInit_f_lengthbenchmark0_0(control);
-            LengthBenchmark_NoSizeParameters_jmhType l_nosizeparameters1_1 = _jmh_tryInit_f_nosizeparameters1_1(control);
+            LengthBenchmark_NoSizeParameters_jmhType l_nosizeparameters1_G = _jmh_tryInit_f_nosizeparameters1_G(control);
 
             control.preSetup();
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_1);
+                l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_G);
                 res.allOps++;
             }
 
             notifyControl.startMeasurement = true;
-            lineReader_avgt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_nosizeparameters1_1, l_lengthbenchmark0_0);
+            lineReader_avgt_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, l_nosizeparameters1_G, l_lengthbenchmark0_0);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_1);
+                    l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_G);
                     res.allOps++;
                 }
                 control.preTearDown();
@@ -165,7 +167,9 @@ public final class LengthBenchmark_lineReader_jmhTest {
             }
 
             if (control.isLastIteration()) {
-                f_nosizeparameters1_1 = null;
+                synchronized(this.getClass()) {
+                    f_nosizeparameters1_G = null;
+                }
                 f_lengthbenchmark0_0 = null;
             }
             res.allOps += res.measuredOps;
@@ -183,12 +187,12 @@ public final class LengthBenchmark_lineReader_jmhTest {
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void lineReader_avgt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, LengthBenchmark_NoSizeParameters_jmhType l_nosizeparameters1_1, LengthBenchmark_jmhType l_lengthbenchmark0_0) throws Throwable {
+    public static void lineReader_avgt_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, LengthBenchmark_NoSizeParameters_jmhType l_nosizeparameters1_G, LengthBenchmark_jmhType l_lengthbenchmark0_0) throws Throwable {
         long operations = 0;
         long realTime = 0;
         result.startTime = System.nanoTime();
         do {
-            l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_1);
+            l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_G);
             operations++;
         } while(!control.isDone);
         result.stopTime = System.nanoTime();
@@ -208,14 +212,14 @@ public final class LengthBenchmark_lineReader_jmhTest {
         if (threadParams.getSubgroupIndex() == 0) {
             RawResults res = new RawResults();
             LengthBenchmark_jmhType l_lengthbenchmark0_0 = _jmh_tryInit_f_lengthbenchmark0_0(control);
-            LengthBenchmark_NoSizeParameters_jmhType l_nosizeparameters1_1 = _jmh_tryInit_f_nosizeparameters1_1(control);
+            LengthBenchmark_NoSizeParameters_jmhType l_nosizeparameters1_G = _jmh_tryInit_f_nosizeparameters1_G(control);
 
             control.preSetup();
 
 
             control.announceWarmupReady();
             while (control.warmupShouldWait) {
-                l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_1);
+                l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_G);
                 res.allOps++;
             }
 
@@ -224,12 +228,12 @@ public final class LengthBenchmark_lineReader_jmhTest {
             int batchSize = iterationParams.getBatchSize();
             int opsPerInv = benchmarkParams.getOpsPerInvocation();
             SampleBuffer buffer = new SampleBuffer();
-            lineReader_sample_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, buffer, targetSamples, opsPerInv, batchSize, l_nosizeparameters1_1, l_lengthbenchmark0_0);
+            lineReader_sample_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, buffer, targetSamples, opsPerInv, batchSize, l_nosizeparameters1_G, l_lengthbenchmark0_0);
             notifyControl.stopMeasurement = true;
             control.announceWarmdownReady();
             try {
                 while (control.warmdownShouldWait) {
-                    l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_1);
+                    l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_G);
                     res.allOps++;
                 }
                 control.preTearDown();
@@ -238,7 +242,9 @@ public final class LengthBenchmark_lineReader_jmhTest {
             }
 
             if (control.isLastIteration()) {
-                f_nosizeparameters1_1 = null;
+                synchronized(this.getClass()) {
+                    f_nosizeparameters1_G = null;
+                }
                 f_lengthbenchmark0_0 = null;
             }
             res.allOps += res.measuredOps * batchSize;
@@ -253,7 +259,7 @@ public final class LengthBenchmark_lineReader_jmhTest {
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void lineReader_sample_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, SampleBuffer buffer, int targetSamples, long opsPerInv, int batchSize, LengthBenchmark_NoSizeParameters_jmhType l_nosizeparameters1_1, LengthBenchmark_jmhType l_lengthbenchmark0_0) throws Throwable {
+    public static void lineReader_sample_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, SampleBuffer buffer, int targetSamples, long opsPerInv, int batchSize, LengthBenchmark_NoSizeParameters_jmhType l_nosizeparameters1_G, LengthBenchmark_jmhType l_lengthbenchmark0_0) throws Throwable {
         long realTime = 0;
         long operations = 0;
         int rnd = (int)System.nanoTime();
@@ -268,7 +274,7 @@ public final class LengthBenchmark_lineReader_jmhTest {
             }
             for (int b = 0; b < batchSize; b++) {
                 if (control.volatileSpoiler) return;
-                l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_1);
+                l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_G);
             }
             if (sample) {
                 buffer.add((System.nanoTime() - time) / opsPerInv);
@@ -296,7 +302,7 @@ public final class LengthBenchmark_lineReader_jmhTest {
         }
         if (threadParams.getSubgroupIndex() == 0) {
             LengthBenchmark_jmhType l_lengthbenchmark0_0 = _jmh_tryInit_f_lengthbenchmark0_0(control);
-            LengthBenchmark_NoSizeParameters_jmhType l_nosizeparameters1_1 = _jmh_tryInit_f_nosizeparameters1_1(control);
+            LengthBenchmark_NoSizeParameters_jmhType l_nosizeparameters1_G = _jmh_tryInit_f_nosizeparameters1_G(control);
 
             control.preSetup();
 
@@ -304,11 +310,13 @@ public final class LengthBenchmark_lineReader_jmhTest {
             notifyControl.startMeasurement = true;
             RawResults res = new RawResults();
             int batchSize = iterationParams.getBatchSize();
-            lineReader_ss_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, batchSize, l_nosizeparameters1_1, l_lengthbenchmark0_0);
+            lineReader_ss_jmhStub(control, res, benchmarkParams, iterationParams, threadParams, blackhole, notifyControl, startRndMask, batchSize, l_nosizeparameters1_G, l_lengthbenchmark0_0);
             control.preTearDown();
 
             if (control.isLastIteration()) {
-                f_nosizeparameters1_1 = null;
+                synchronized(this.getClass()) {
+                    f_nosizeparameters1_G = null;
+                }
                 f_lengthbenchmark0_0 = null;
             }
             int opsPerInv = control.benchmarkParams.getOpsPerInvocation();
@@ -321,17 +329,46 @@ public final class LengthBenchmark_lineReader_jmhTest {
             throw new IllegalStateException("Harness failed to distribute threads among groups properly");
     }
 
-    public static void lineReader_ss_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, int batchSize, LengthBenchmark_NoSizeParameters_jmhType l_nosizeparameters1_1, LengthBenchmark_jmhType l_lengthbenchmark0_0) throws Throwable {
+    public static void lineReader_ss_jmhStub(InfraControl control, RawResults result, BenchmarkParams benchmarkParams, IterationParams iterationParams, ThreadParams threadParams, Blackhole blackhole, Control notifyControl, int startRndMask, int batchSize, LengthBenchmark_NoSizeParameters_jmhType l_nosizeparameters1_G, LengthBenchmark_jmhType l_lengthbenchmark0_0) throws Throwable {
         long realTime = 0;
         result.startTime = System.nanoTime();
         for (int b = 0; b < batchSize; b++) {
             if (control.volatileSpoiler) return;
-            l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_1);
+            l_lengthbenchmark0_0.lineReader(blackhole, l_nosizeparameters1_G);
         }
         result.stopTime = System.nanoTime();
         result.realTime = realTime;
     }
 
+    
+    static volatile LengthBenchmark_NoSizeParameters_jmhType f_nosizeparameters1_G;
+    
+    LengthBenchmark_NoSizeParameters_jmhType _jmh_tryInit_f_nosizeparameters1_G(InfraControl control) throws Throwable {
+        LengthBenchmark_NoSizeParameters_jmhType val = f_nosizeparameters1_G;
+        if (val != null) {
+            return val;
+        }
+        synchronized(this.getClass()) {
+            try {
+            if (control.isFailing) throw new FailureAssistException();
+            val = f_nosizeparameters1_G;
+            if (val != null) {
+                return val;
+            }
+            val = new LengthBenchmark_NoSizeParameters_jmhType();
+            Field f;
+            f = benchmark.LengthBenchmark.NoSizeParameters.class.getDeclaredField("fileName");
+            f.setAccessible(true);
+            f.set(val, control.getParam("fileName"));
+            val.readyTrial = true;
+            f_nosizeparameters1_G = val;
+            } catch (Throwable t) {
+                control.isFailing = true;
+                throw t;
+            }
+        }
+        return val;
+    }
     
     LengthBenchmark_jmhType f_lengthbenchmark0_0;
     
@@ -341,22 +378,6 @@ public final class LengthBenchmark_lineReader_jmhTest {
         if (val == null) {
             val = new LengthBenchmark_jmhType();
             f_lengthbenchmark0_0 = val;
-        }
-        return val;
-    }
-    
-    LengthBenchmark_NoSizeParameters_jmhType f_nosizeparameters1_1;
-    
-    LengthBenchmark_NoSizeParameters_jmhType _jmh_tryInit_f_nosizeparameters1_1(InfraControl control) throws Throwable {
-        if (control.isFailing) throw new FailureAssistException();
-        LengthBenchmark_NoSizeParameters_jmhType val = f_nosizeparameters1_1;
-        if (val == null) {
-            val = new LengthBenchmark_NoSizeParameters_jmhType();
-                Field f;
-                f = benchmark.LengthBenchmark.NoSizeParameters.class.getDeclaredField("fileName");
-                f.setAccessible(true);
-                f.set(val, control.getParam("fileName"));
-            f_nosizeparameters1_1 = val;
         }
         return val;
     }

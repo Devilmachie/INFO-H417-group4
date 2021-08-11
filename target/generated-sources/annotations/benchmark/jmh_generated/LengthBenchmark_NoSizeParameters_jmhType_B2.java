@@ -16,4 +16,7 @@ public class LengthBenchmark_NoSizeParameters_jmhType_B2 extends LengthBenchmark
     public final static AtomicIntegerFieldUpdater<LengthBenchmark_NoSizeParameters_jmhType_B2> setupInvocationMutexUpdater = AtomicIntegerFieldUpdater.newUpdater(LengthBenchmark_NoSizeParameters_jmhType_B2.class, "setupInvocationMutex");
     public final static AtomicIntegerFieldUpdater<LengthBenchmark_NoSizeParameters_jmhType_B2> tearInvocationMutexUpdater = AtomicIntegerFieldUpdater.newUpdater(LengthBenchmark_NoSizeParameters_jmhType_B2.class, "tearInvocationMutex");
 
+    public volatile boolean readyTrial;
+    public volatile boolean readyIteration;
+    public volatile boolean readyInvocation;
 }

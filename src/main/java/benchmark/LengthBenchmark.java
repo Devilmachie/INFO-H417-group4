@@ -12,66 +12,59 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 
+@BenchmarkMode(Mode.AverageTime)
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@Fork(value = 1)
+@Warmup(iterations = 3)
+@Measurement(iterations = 8)
+
 public class LengthBenchmark {
 
-    @State(Scope.Thread)
+    @State(Scope.Benchmark)
     public static class NoSizeParameters
     {
         @Param({"C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\company_name.csv" ,
-                "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\company_type.csv" ,
-                "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\complete_cast.csv" ,
                 "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\comp_cast_type.csv" ,
                 "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\info_type.csv" ,
                 "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\keyword.csv" ,
                 "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\kind_type.csv" ,
                 "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\link_type.csv" ,
-                "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\movie_info_idx.csv" ,
                 "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\movie_link.csv" ,
                 "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\role_type.csv" ,
-                "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\schematext.sql"
+                "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\cast_info.csv"
+
         })
         public String fileName;
 
     }
 
-    @State(Scope.Thread)
+    @State(Scope.Benchmark)
     public static class WithSizeParameters
     {
         @Param({"C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\company_name.csv" ,
-                "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\company_type.csv" ,
-                "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\complete_cast.csv" ,
                 "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\comp_cast_type.csv" ,
                 "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\info_type.csv" ,
                 "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\keyword.csv" ,
                 "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\kind_type.csv" ,
                 "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\link_type.csv" ,
-                "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\movie_info_idx.csv" ,
                 "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\movie_link.csv" ,
                 "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\role_type.csv" ,
-                "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\schematext.sql"
+                "C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\cast_info.csv"
         })
         public String fileName;
 
-        @Param({"1" ,
-                "2" ,
-                "4" ,
-                "32" ,
-                "256" ,
-                "1024" ,
+        @Param({"1024" ,
                 "4096" ,
-                "65536"
+                "16384",
+                "65536",
+                "131072",
+                "262144"
         })
         public int bufferSize;
 
     }
 
     @Benchmark
-    @BenchmarkMode(Mode.AverageTime)
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    @Fork(value = 1)
-    @Warmup(iterations = 1)
-    @Measurement(iterations = 5)
-    @Timeout(time = 600)
     public void singleCharacterReader(Blackhole bh, NoSizeParameters parameters)
     {
 
@@ -88,13 +81,8 @@ public class LengthBenchmark {
         bh.consume(sum);
     }
 
+
     @Benchmark
-    @BenchmarkMode(Mode.AverageTime)
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    @Fork(value = 1)
-    @Warmup(iterations = 3)
-    @Measurement(iterations = 20)
-    @Timeout(time = 600)
     public void bufferedReader(Blackhole bh, WithSizeParameters parameters)
     {
 
@@ -112,12 +100,6 @@ public class LengthBenchmark {
     }
 
     @Benchmark
-    @BenchmarkMode(Mode.AverageTime)
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    @Fork(value = 1)
-    @Warmup(iterations = 3)
-    @Measurement(iterations = 20)
-    @Timeout(time = 600)
     public void lineReader(Blackhole bh, NoSizeParameters parameters)
     {
 
@@ -135,12 +117,6 @@ public class LengthBenchmark {
     }
 
     @Benchmark
-    @BenchmarkMode(Mode.AverageTime)
-    @OutputTimeUnit(TimeUnit.MILLISECONDS)
-    @Fork(value = 1)
-    @Warmup(iterations = 3)
-    @Measurement(iterations = 20)
-    @Timeout(time = 600)
     public void mappedReader(Blackhole bh, WithSizeParameters parameters)
     {
 
