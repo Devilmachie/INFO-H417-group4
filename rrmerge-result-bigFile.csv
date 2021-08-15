@@ -1,0 +1,15 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99,9%)","Unit","Param: bufferSize","Param: k"
+"benchmark.RRMerge.rrmerge_LineReader_BufferedWriter","avgt",1,5,"25507,989780","369,891232","ms/op",1024,2
+"benchmark.RRMerge.rrmerge_LineReader_BufferedWriter","avgt",1,5,"23604,436000","4976,276384","ms/op",4096,2
+"benchmark.RRMerge.rrmerge_LineReader_BufferedWriter","avgt",1,5,"24995,043400","762,937971","ms/op",16384,2
+"benchmark.RRMerge.rrmerge_LineReader_BufferedWriter","avgt",1,5,"24942,290660","208,700305","ms/op",65536,2
+"benchmark.RRMerge.rrmerge_LineReader_BufferedWriter","avgt",1,5,"25030,214680","479,303952","ms/op",131072,2
+"benchmark.RRMerge.rrmerge_LineReader_BufferedWriter","avgt",1,5,"25074,179080","458,229037","ms/op",262144,2
+"benchmark.RRMerge.rrmerge_LineReader_LineWriter","avgt",1,5,"1285,604088","12,719401","ms/op",,2
+"benchmark.RRMerge.rrmerge_LineReader_MappedWriter","avgt",1,5,"5458,617710","1661,536689","ms/op",1024,2
+"benchmark.RRMerge.rrmerge_LineReader_MappedWriter","avgt",1,5,"5373,247110","791,735656","ms/op",4096,2
+"benchmark.RRMerge.rrmerge_LineReader_MappedWriter","avgt",1,5,"5453,873867","1809,243501","ms/op",16384,2
+"benchmark.RRMerge.rrmerge_LineReader_MappedWriter","avgt",1,5,"5446,227340","1812,320050","ms/op",65536,2
+"benchmark.RRMerge.rrmerge_LineReader_MappedWriter","avgt",1,5,"5384,734227","1244,358020","ms/op",131072,2
+"benchmark.RRMerge.rrmerge_LineReader_MappedWriter","avgt",1,5,"5369,344150","781,587337","ms/op",262144,2
+"benchmark.RRMerge.rrmerge_LineReader_singleCharacterWriter","avgt",1,5,"25614,876200","255,022003","ms/op",,2

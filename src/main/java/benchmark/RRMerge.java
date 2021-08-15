@@ -2,10 +2,7 @@ package benchmark;
 
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.infra.Blackhole;
-import streaminput.BufferReader;
-import streaminput.CharacterReader;
-import streaminput.LineReader;
-import streaminput.StreamReader;
+import streaminput.*;
 import streamoutput.BufferWriter;
 import streamoutput.CharacterWriter;
 import streamoutput.LineWriter;
@@ -20,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @Fork(value = 1)
 @Warmup(iterations = 3)
-@Measurement(iterations = 8)
+@Measurement(iterations = 5)
 public class RRMerge {
     @State(Scope.Benchmark)
     public static class NoSizeParameters {
@@ -38,7 +35,7 @@ public class RRMerge {
 
         public String outputFilePath = "rrmerge.out";
 
-        @Param({"2", "4", "8"})
+        @Param({"4"})
         public int k;
     }
 
@@ -66,12 +63,12 @@ public class RRMerge {
         })
         public int bufferSize;
 
-        @Param({"2", "4", "6"})
+        @Param({"4"})
         public int k;
     }
 
     @Benchmark
-    public void rrmerge_LineReader_singleCharacterWriter(Blackhole bh, WithSizeParameters parameters)
+    public void rrmerge_LineReader_singleCharacterWriter(Blackhole bh, NoSizeParameters parameters)
     {
         boolean allFiledCopied = false;
         ArrayList<StreamReader> filesToMerge = new ArrayList<>();
@@ -80,24 +77,21 @@ public class RRMerge {
         CharacterWriter cwriter = new CharacterWriter(out);
         if(parameters.k == 2)
         {
-            filesToMerge.add(new LineReader(new File(parameters.fileName[8])));
+            filesToMerge.add(new LineReader(new File(parameters.fileName[6])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[7])));
         }
-        else if (parameters.k == 4)
-        {
-            filesToMerge.add(new LineReader(new File(parameters.fileName[6])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[5])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[4])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[3])));
-        }
-        else if (parameters.k == 6)
+        else if (parameters.k == 3)
         {
             filesToMerge.add(new LineReader(new File(parameters.fileName[0])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[1])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[2])));
+        }
+        else if (parameters.k == 4)
+        {
+            filesToMerge.add(new LineReader(new File(parameters.fileName[2])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[3])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[4])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[5])));
+            filesToMerge.add(new LineReader(new File(parameters.fileName[6])));
+            filesToMerge.add(new LineReader(new File(parameters.fileName[7])));
         }
         while (! allFiledCopied)
         {
@@ -120,7 +114,7 @@ public class RRMerge {
     }
 
     @Benchmark
-    public void rrmerge_LineReader_LineWriter(Blackhole bh, WithSizeParameters parameters)
+    public void rrmerge_LineReader_LineWriter(Blackhole bh,NoSizeParameters parameters)
     {
         boolean allFiledCopied = false;
         ArrayList<StreamReader> filesToMerge = new ArrayList<>();
@@ -129,24 +123,21 @@ public class RRMerge {
         LineWriter lwriter = new LineWriter(out);
         if(parameters.k == 2)
         {
-            filesToMerge.add(new LineReader(new File(parameters.fileName[8])));
+            filesToMerge.add(new LineReader(new File(parameters.fileName[6])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[7])));
         }
-        else if (parameters.k == 4)
-        {
-            filesToMerge.add(new LineReader(new File(parameters.fileName[6])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[5])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[4])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[3])));
-        }
-        else if (parameters.k == 6)
+        else if (parameters.k == 3)
         {
             filesToMerge.add(new LineReader(new File(parameters.fileName[0])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[1])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[2])));
+        }
+        else if (parameters.k == 4)
+        {
+            filesToMerge.add(new LineReader(new File(parameters.fileName[2])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[3])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[4])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[5])));
+            filesToMerge.add(new LineReader(new File(parameters.fileName[6])));
+            filesToMerge.add(new LineReader(new File(parameters.fileName[7])));
         }
         while (! allFiledCopied)
         {
@@ -178,24 +169,21 @@ public class RRMerge {
         BufferWriter bwriter = new BufferWriter(out, parameters.bufferSize);
         if(parameters.k == 2)
         {
-            filesToMerge.add(new LineReader(new File(parameters.fileName[8])));
+            filesToMerge.add(new LineReader(new File(parameters.fileName[6])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[7])));
         }
-        else if (parameters.k == 4)
-        {
-            filesToMerge.add(new LineReader(new File(parameters.fileName[6])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[5])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[4])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[3])));
-        }
-        else if (parameters.k == 6)
+        else if (parameters.k == 3)
         {
             filesToMerge.add(new LineReader(new File(parameters.fileName[0])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[1])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[2])));
+        }
+        else if (parameters.k == 4)
+        {
+            filesToMerge.add(new LineReader(new File(parameters.fileName[2])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[3])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[4])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[5])));
+            filesToMerge.add(new LineReader(new File(parameters.fileName[6])));
+            filesToMerge.add(new LineReader(new File(parameters.fileName[7])));
         }
         while (! allFiledCopied)
         {
@@ -227,24 +215,21 @@ public class RRMerge {
         MappedWriter mappedWriter = new MappedWriter(out, parameters.bufferSize);
         if(parameters.k == 2)
         {
-            filesToMerge.add(new LineReader(new File(parameters.fileName[8])));
+            filesToMerge.add(new LineReader(new File(parameters.fileName[6])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[7])));
         }
-        else if (parameters.k == 4)
+        else if (parameters.k == 3)
         {
-            filesToMerge.add(new LineReader(new File(parameters.fileName[6])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[5])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[4])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[3])));
+            filesToMerge.add(new LineReader(new File(parameters.fileName[0])));
+            filesToMerge.add(new LineReader(new File(parameters.fileName[1])));
+            filesToMerge.add(new LineReader(new File(parameters.fileName[2])));
         }
-        else if (parameters.k == 6)
+        else if (parameters.k == 4)
         {
             filesToMerge.add(new LineReader(new File(parameters.fileName[0])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[1])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[2])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[3])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[4])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[5])));
         }
         while (! allFiledCopied)
         {

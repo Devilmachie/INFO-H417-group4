@@ -1,0 +1,25 @@
+"Benchmark","Mode","Threads","Samples","Score","Score Error (99,9%)","Unit","Param: bufferSize","Param: k"
+"benchmark.RRMerge.rrmerge_LineReader_BufferedWriter","avgt",1,5,"517,709547","10,470126","ms/op",1024,2
+"benchmark.RRMerge.rrmerge_LineReader_BufferedWriter","avgt",1,5,"285,970626","12,214815","ms/op",4096,2
+"benchmark.RRMerge.rrmerge_LineReader_BufferedWriter","avgt",1,5,"167,436553","14,052369","ms/op",16384,2
+"benchmark.RRMerge.rrmerge_LineReader_BufferedWriter","avgt",1,5,"152,514346","9,972996","ms/op",65536,2
+"benchmark.RRMerge.rrmerge_LineReader_BufferedWriter","avgt",1,5,"150,768900","29,278713","ms/op",131072,2
+"benchmark.RRMerge.rrmerge_LineReader_BufferedWriter","avgt",1,5,"155,642358","21,214048","ms/op",262144,2
+"benchmark.RRMerge.rrmerge_LineReader_LineWriter","avgt",1,5,"458,104681","13,184207","ms/op",1024,2
+"benchmark.RRMerge.rrmerge_LineReader_LineWriter","avgt",1,5,"263,403926","5,932921","ms/op",4096,2
+"benchmark.RRMerge.rrmerge_LineReader_LineWriter","avgt",1,5,"173,988137","18,897119","ms/op",16384,2
+"benchmark.RRMerge.rrmerge_LineReader_LineWriter","avgt",1,5,"150,848817","15,562208","ms/op",65536,2
+"benchmark.RRMerge.rrmerge_LineReader_LineWriter","avgt",1,5,"155,092956","25,047772","ms/op",131072,2
+"benchmark.RRMerge.rrmerge_LineReader_LineWriter","avgt",1,5,"151,059147","4,164002","ms/op",262144,2
+"benchmark.RRMerge.rrmerge_LineReader_MappedWriter","avgt",1,5,"726,015287","35,275549","ms/op",1024,2
+"benchmark.RRMerge.rrmerge_LineReader_MappedWriter","avgt",1,5,"304,932121","14,922516","ms/op",4096,2
+"benchmark.RRMerge.rrmerge_LineReader_MappedWriter","avgt",1,5,"154,513172","7,190201","ms/op",16384,2
+"benchmark.RRMerge.rrmerge_LineReader_MappedWriter","avgt",1,5,"124,460168","2,692019","ms/op",65536,2
+"benchmark.RRMerge.rrmerge_LineReader_MappedWriter","avgt",1,5,"119,357514","5,521931","ms/op",131072,2
+"benchmark.RRMerge.rrmerge_LineReader_MappedWriter","avgt",1,5,"117,668576","3,467535","ms/op",262144,2
+"benchmark.RRMerge.rrmerge_LineReader_singleCharacterWriter","avgt",1,5,"845,710038","9,902754","ms/op",1024,2
+"benchmark.RRMerge.rrmerge_LineReader_singleCharacterWriter","avgt",1,5,"659,220449","14,141586","ms/op",4096,2
+"benchmark.RRMerge.rrmerge_LineReader_singleCharacterWriter","avgt",1,5,"570,258894","10,608941","ms/op",16384,2
+"benchmark.RRMerge.rrmerge_LineReader_singleCharacterWriter","avgt",1,5,"552,606557","6,491676","ms/op",65536,2
+"benchmark.RRMerge.rrmerge_LineReader_singleCharacterWriter","avgt",1,5,"550,534143","9,538177","ms/op",131072,2
+"benchmark.RRMerge.rrmerge_LineReader_singleCharacterWriter","avgt",1,5,"547,470546","11,611494","ms/op",262144,2
