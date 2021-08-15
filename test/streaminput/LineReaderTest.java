@@ -50,6 +50,29 @@ class LineReaderTest {
         assertEquals(false, lread.isStreamOpen());
     }
 
+    @Test
+    void readImdbFileAndDoRndJumps()
+    {
+        String[] files = {"C:\\Users\\lenge\\IdeaProjects\\INFO-H417-group4\\imdb\\company_name.csv"
+
+        };
+        for (String fileName : files) {
+            File fp = new File(fileName);
+            LineReader testReader = new LineReader(fp);
+            long sum = 0;
+            long p = 0;
+            int j = 100;
+            String lineRead;
+            long fileSize = testReader.getFileSize();
+            for (int i = 0; i < j; i++) {
+                p = (long) (Math.random() * fileSize);
+                testReader.setPointerPosition(p);
+                lineRead = testReader.readln();
+                sum += lineRead.length();
+            }
+        }
+    }
+
     @AfterEach
     void tearDown() {
         lread.close();

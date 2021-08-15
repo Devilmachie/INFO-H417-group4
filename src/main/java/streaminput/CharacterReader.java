@@ -74,4 +74,9 @@ public class CharacterReader implements StreamReader {
             nc.printStackTrace();
         }
     }
+
+    @Override
+    public long getFileSize() {
+        return fp.length();
+    }
 }

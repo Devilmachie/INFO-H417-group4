@@ -5,4 +5,6 @@ public interface StreamReader {
     boolean eos_reached();
     void setPointerPosition(long pos);
     void close();
+
+    long getFileSize();
 }

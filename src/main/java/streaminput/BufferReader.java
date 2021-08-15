@@ -12,12 +12,14 @@ public class BufferReader implements StreamReader {
     private int bufferpos = 0;
     private boolean eos;
     private char[] buffer;
+    private FileReader wrappedReader;
     private long nchar_read = 0;
 
     public BufferReader(File fp) {
         this.fp = fp;
         try {
-            reader = new BufferedReader(new FileReader(fp), buf_size);
+            wrappedReader = new FileReader(fp);
+            reader = new BufferedReader(wrappedReader, buf_size);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -114,5 +116,10 @@ public class BufferReader implements StreamReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public long getFileSize() {
+        return fp.length();
     }
 }

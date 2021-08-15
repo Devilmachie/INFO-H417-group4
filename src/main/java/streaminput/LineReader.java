@@ -47,7 +47,8 @@ public class LineReader implements StreamReader {
     @Override
     public void setPointerPosition(long pos) {
         try {
-            reader.reset();
+            reader.close();
+            reader = new BufferedReader(new FileReader(fp));
             reader.skip(pos);
         } catch (IOException e) {
             e.printStackTrace();
@@ -72,5 +73,10 @@ public class LineReader implements StreamReader {
             is_open = false;
         }
         return is_open;
+    }
+
+    @Override
+    public long getFileSize() {
+        return fp.length();
     }
 }

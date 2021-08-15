@@ -117,6 +117,11 @@ public class MappedReader implements StreamReader {
         }
     }
 
+    @Override
+    public long getFileSize() {
+        return fp.length();
+    }
+
     public boolean isStreamOpen()
     {
         return channel.getChannel().isOpen();

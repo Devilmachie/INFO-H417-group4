@@ -1,0 +1,4 @@
+package benchmark.jmh_generated;
+public class RandomJumpBenchmark_WithSizeParameters_jmhType extends RandomJumpBenchmark_WithSizeParameters_jmhType_B3 {
+}
+
