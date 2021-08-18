@@ -226,10 +226,194 @@ public class RRMerge {
         }
         else if (parameters.k == 4)
         {
-            filesToMerge.add(new LineReader(new File(parameters.fileName[0])));
-            filesToMerge.add(new LineReader(new File(parameters.fileName[1])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[2])));
             filesToMerge.add(new LineReader(new File(parameters.fileName[3])));
+            filesToMerge.add(new LineReader(new File(parameters.fileName[6])));
+            filesToMerge.add(new LineReader(new File(parameters.fileName[7])));
+        }
+        while (! allFiledCopied)
+        {
+            allFiledCopied = true;
+            for (StreamReader reader : filesToMerge)
+            {
+                if(! reader.eos_reached())
+                {
+                    line = reader.readln();
+                    try {
+                        mappedWriter.writeLine(line);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                allFiledCopied = allFiledCopied && reader.eos_reached();
+            }
+        }
+
+    }
+
+    @Benchmark
+    public void rrmerge_MappedReader_singleCharacterWriter(Blackhole bh, WithSizeParameters parameters)
+    {
+        boolean allFiledCopied = false;
+        ArrayList<StreamReader> filesToMerge = new ArrayList<>();
+        String line;
+        File out = new File(parameters.outputFilePath);
+        CharacterWriter cwriter = new CharacterWriter(out);
+        if(parameters.k == 2)
+        {
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[6]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[7]), parameters.bufferSize));
+        }
+        else if (parameters.k == 3)
+        {
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[0]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[1]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[2]), parameters.bufferSize));
+        }
+        else if (parameters.k == 4)
+        {
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[2]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[3]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[6]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[7]), parameters.bufferSize));
+        }
+        while (! allFiledCopied)
+        {
+            allFiledCopied = true;
+            for (StreamReader reader : filesToMerge)
+            {
+                if(! reader.eos_reached())
+                {
+                    line = reader.readln();
+                    try {
+                        cwriter.writeLine(line);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                allFiledCopied = allFiledCopied && reader.eos_reached();
+            }
+        }
+
+    }
+
+    @Benchmark
+    public void rrmerge_MappedReader_LineWriter(Blackhole bh,WithSizeParameters parameters)
+    {
+        boolean allFiledCopied = false;
+        ArrayList<StreamReader> filesToMerge = new ArrayList<>();
+        String line;
+        File out = new File(parameters.outputFilePath);
+        LineWriter lwriter = new LineWriter(out);
+        if(parameters.k == 2)
+        {
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[6]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[7]), parameters.bufferSize));
+        }
+        else if (parameters.k == 3)
+        {
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[0]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[1]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[2]), parameters.bufferSize));
+        }
+        else if (parameters.k == 4)
+        {
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[2]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[3]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[6]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[7]), parameters.bufferSize));
+        }
+        while (! allFiledCopied)
+        {
+            allFiledCopied = true;
+            for (StreamReader reader : filesToMerge)
+            {
+                if(! reader.eos_reached())
+                {
+                    line = reader.readln();
+                    try {
+                        lwriter.writeLine(line);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                allFiledCopied = allFiledCopied && reader.eos_reached();
+            }
+        }
+
+    }
+
+    @Benchmark
+    public void rrmerge_MappedReader_BufferedWriter(Blackhole bh, WithSizeParameters parameters)
+    {
+        boolean allFiledCopied = false;
+        ArrayList<StreamReader> filesToMerge = new ArrayList<>();
+        String line;
+        File out = new File(parameters.outputFilePath);
+        BufferWriter bwriter = new BufferWriter(out, parameters.bufferSize);
+        if(parameters.k == 2)
+        {
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[6]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[7]), parameters.bufferSize));
+        }
+        else if (parameters.k == 3)
+        {
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[0]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[1]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[2]), parameters.bufferSize));
+        }
+        else if (parameters.k == 4)
+        {
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[2]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[3]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[6]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[7]), parameters.bufferSize));
+        }
+        while (! allFiledCopied)
+        {
+            allFiledCopied = true;
+            for (StreamReader reader : filesToMerge)
+            {
+                if(! reader.eos_reached())
+                {
+                    line = reader.readln();
+                    try {
+                        bwriter.writeLine(line);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                allFiledCopied = allFiledCopied && reader.eos_reached();
+            }
+        }
+
+    }
+
+    @Benchmark
+    public void rrmerge_MappedReader_MappedWriter(Blackhole bh, WithSizeParameters parameters)
+    {
+        boolean allFiledCopied = false;
+        ArrayList<StreamReader> filesToMerge = new ArrayList<>();
+        String line;
+        File out = new File(parameters.outputFilePath);
+        MappedWriter mappedWriter = new MappedWriter(out, parameters.bufferSize);
+        if(parameters.k == 2)
+        {
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[6]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[7]), parameters.bufferSize));
+        }
+        else if (parameters.k == 3)
+        {
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[0]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[1]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[2]), parameters.bufferSize));
+        }
+        else if (parameters.k == 4)
+        {
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[2]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[3]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[6]), parameters.bufferSize));
+            filesToMerge.add(new MappedReader(new File(parameters.fileName[7]), parameters.bufferSize));
         }
         while (! allFiledCopied)
         {
